@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.card {
+    height: 175px;
+    width: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    margin: 5px;
+    border-radius: 5px;
+    border: 2px solid black;
+}
+
+.card.red {
+    color: red;
+}
+
+.card .number {
+    position: absolute;
+    font-size: 2rem;
+}
+
+.card .number.top {
+    top: 10px;
+    left: 10px;
+}
+
+.card .number.bottom {
+    bottom: 10px;
+    right: 10px;
+}
+
+.card .suit {
+    font-size: 5rem;
+}
