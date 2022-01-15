@@ -4,9 +4,15 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
+.container {
+    position: relative;
+    height: 700px;
+}
+
 .card {
     height: 175px;
-    width: 120px;
+    width: calc(100vw / 14);
+    background-color: white;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -14,6 +20,7 @@ body {
     margin: 5px;
     border-radius: 5px;
     border: 2px solid black;
+    transition: top 300ms linear, left 300ms linear;
 }
 
 .card.red {

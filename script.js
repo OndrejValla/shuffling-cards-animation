@@ -14,7 +14,11 @@ const suits = [{
     color: 'black',
 }, ];
 
+let positions = [];
+const spacing = 10;
+
 const container = document.getElementById('container');
+const shuffleBtn = document.getElementById('shuffle');
 
 function createCard({
     number,
@@ -30,8 +34,15 @@ function createCard({
         cardEl.classList.add('red');
     }
 
-    cardEl.style.top = suit_idx * 175 + 'px';
-    cardEl.style.left = number_idx * 120 + 'px';
+    const TOP = suit_idx * 175 +
+        spacing * suit_idx + 'px';
+    const LEFT = number_idx * 120 +
+        spacing * number_idx + 'px';
+
+    positions.push([TOP, LEFT]);
+
+    cardEl.style.top = TOP;
+    cardEl.style.left = LEFT;
 
     cardEl.innerHTML = `
         <span class="number top">
@@ -60,3 +71,40 @@ suits.forEach((suit, suit_idx) => {
         createCard(cardDetails);
     });
 });
+
+const cards = document.querySelectorAll('.card');
+
+shuffleBtn.addEventListener('click', () => {
+    cards.forEach((card, idx) => {
+        setTimeout(() => {
+            card.style.zIndex = 52 - idx;
+            card.style.top = '50%';
+            card.style.left = '50%';
+        }, idx * 20);
+    });
+
+    setTimeout(shuffleBack, 52 * 20 + 500);
+});
+
+function shuffleBack() {
+    // shuffle the positions
+    shufflePositions();
+
+    cards.forEach((card, idx) => {
+        setTimeout(() => {
+            card.style.top = positions[idx][0];
+            card.style.left = positions[idx][1];
+        }, idx * 20);
+    });
+}
+
+function shufflePositions() {
+    for (let i = 0; i < 200; i++) {
+        const rand1 = Math.floor(Math.random() * 52);
+        const rand2 = Math.floor(Math.random() * 52);
+
+        const temp = positions[rand1];
+        positions[rand1] = positions[rand2];
+        positions[rand2] = temp;
+    }
+}
